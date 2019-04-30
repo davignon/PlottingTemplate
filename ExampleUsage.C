@@ -21,7 +21,6 @@ void ExampleUsage()
   //here add the histos, functions, etc. you want to draw (drawing happens below)
 
   TF1* myFunction = new TF1("myFunction","x *100");
-  // TF1* myFunction = new TF1("myFunction","x * ( exp(7.15226e-02 *2. / (2./52 - 0.0103 * x) + -2.73462e-01) + 9.90780e-01 * 2. / (2./52 - 0.0103 * x) + 7.22748e+00) + (1 - x) * ( exp(5.85573e-02 *2. / (2./52 - 0.0103 * x) + 4.54663e-02) + 1.22138e+00 * 2. / (2./52 - 0.0103 * x) + -4.79855e-01)");
   myFunction->SetTitle("");
 
   //or read file where histos are saved
