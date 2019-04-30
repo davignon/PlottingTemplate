@@ -49,7 +49,7 @@ void DrawLumiLabel(TCanvas* c, TString Lumi = "35.9")
   TLatex tex;
   tex.SetTextSize(0.035);
   TString toDisplay = Lumi + " fb^{-1} (13 TeV)";
-  tex.DrawLatexNDC(0.69,0.91,toDisplay.Data());
+  tex.DrawLatexNDC(0.66,0.91,toDisplay.Data());
   tex.Draw("same");
 
   return;
