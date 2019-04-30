@@ -10,11 +10,10 @@ void ExampleUsage()
   // root -l
   // [0] .L ExampleUsage.C++
   // [1] ExampleUsage()
-  // The sections that has to be modified is surrounded by //##### comments
 
   TString PlotName = "myPlotName";
   bool LogY = true;
-  bool DisplayGrid = false;
+  bool DisplayGrid = true;
   TString Lumi = "35.9";
 
   TCanvas* myCanvas = CreateCanvas(PlotName, LogY, DisplayGrid);
