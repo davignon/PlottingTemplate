@@ -11,6 +11,8 @@ void ExampleUsage()
   // [0] .L ExampleUsage.C++
   // [1] ExampleUsage()
 
+  gStyle->SetOptStat(000000);
+
   TString PlotName = "myPlotName";
   bool LogY = true;
   bool DisplayGrid = true;
@@ -20,20 +22,26 @@ void ExampleUsage()
 
   //here add the histos, functions, etc. you want to draw (drawing happens below)
 
-  TF1* myFunction = new TF1("myFunction","x *100");
+  double minimumX = 0.;
+  double maximumX = 1.;
+  double minimumY = 5.;
+  double maximumY = 200.;
+
+  // follows are two dummy examples of a function / a histo
+  TF1* myFunction = new TF1("myFunction","x *100",minimumX,maximumX);
   myFunction->SetTitle("");
 
-  //or read file where histos are saved
-  //TFile myFileContainingHistos("filename.root","READ");
-  //myFunction = (TH1F*)myFileContainingHistos.Get("histoName");
+  // TH1F* myFunction = new TH1F("myFunction","myFuncion",100,minimumX,maximumX);
+  // for(Int_t i = 1 ; i <= myFunction->GetNbinsX() ; ++i) myFunction->SetBinContent(i,100+float(i));
+  // myFunction->SetTitle("");
 
-  //follows are examples on how to format legends, axis, etc.
+  // when you read file(s) where histos / graphs are saved
+  // TFile myFileContainingHistos("filename.root","READ");
+  // myFunction = (TH1F*)myFileContainingHistos.Get("histoName");
+
+  // follows are examples on how to format legends, axis, etc.
 
   //axis labels ranges & names
-  double minimumX = 20.;
-  double maximumX = 100.;
-  double minimumY = 5.;
-  double maximumY = 330.;
   if(LogY && minimumY==0.) cout<<"****** LogY == true and minimumY == 0, you probably want to avoid that ******"<<endl;
   myFunction->SetMinimum(minimumY);
   myFunction->SetMaximum(maximumY);
@@ -60,12 +68,12 @@ void ExampleUsage()
   leg->Draw("same");
 
   //line
-  // double max_rate = 115.;
-  // TLine* a115kHz_line = new TLine(0.,max_rate,1.,max_rate);
-  // a115kHz_line->SetLineColor(kRed);
-  // a115kHz_line->SetLineWidth(3.);
-  // a115kHz_line->SetLineStyle(2);
-  // a115kHz_line->Draw("same");
+  // double max_line = 115.;
+  // TLine* a_line = new TLine(0.,max_line,1.,max_line);
+  // a_line->SetLineColor(kRed);
+  // a_line->SetLineWidth(3.);
+  // a_line->SetLineStyle(2);
+  // a_line->Draw("same");
 
   DrawPrelimLabel(myCanvas);
   DrawLumiLabel(myCanvas, Lumi);

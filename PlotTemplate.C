@@ -10,6 +10,10 @@
 #include <TAxis.h>
 #include <TROOT.h>
 #include <TStyle.h>
+#include <TH1.h>
+#include <TGraph.h>
+#include <TMultiGraph.h>
+#include <TGraphAsymmErrors.h>
 
 TCanvas* CreateCanvas(TString CanvasName = "myPlot", bool LogY = false, bool Grid = true)
 {
