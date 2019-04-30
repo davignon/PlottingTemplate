@@ -14,13 +14,15 @@ void ExampleUsage()
 
   TString PlotName = "myPlotName";
   bool LogY = true;
+  bool DisplayGrid = false;
   TString Lumi = "35.9";
 
-  TCanvas* myCanvas = CreateCanvas(PlotName, LogY);
+  TCanvas* myCanvas = CreateCanvas(PlotName, LogY, DisplayGrid);
 
   //here add the histos, functions, etc. you want to draw (drawing happens below)
 
-  TF1* myFunction = new TF1("Scenario 1","x * ( exp(7.15226e-02 *2. / (2./52 - 0.0103 * x) + -2.73462e-01) + 9.90780e-01 * 2. / (2./52 - 0.0103 * x) + 7.22748e+00) + (1 - x) * ( exp(5.85573e-02 *2. / (2./52 - 0.0103 * x) + 4.54663e-02) + 1.22138e+00 * 2. / (2./52 - 0.0103 * x) + -4.79855e-01)");
+  TF1* myFunction = new TF1("myFunction","x *100");
+  // TF1* myFunction = new TF1("myFunction","x * ( exp(7.15226e-02 *2. / (2./52 - 0.0103 * x) + -2.73462e-01) + 9.90780e-01 * 2. / (2./52 - 0.0103 * x) + 7.22748e+00) + (1 - x) * ( exp(5.85573e-02 *2. / (2./52 - 0.0103 * x) + 4.54663e-02) + 1.22138e+00 * 2. / (2./52 - 0.0103 * x) + -4.79855e-01)");
   myFunction->SetTitle("");
 
   //or read file where histos are saved
@@ -29,13 +31,17 @@ void ExampleUsage()
 
   //follows are examples on how to format legends, axis, etc.
 
-  //axis labels names
-  double minimum = 50.;
-  myFunction->SetMinimum(minimum);
-  myFunction->SetMaximum(330.);
-  myFunction->GetXaxis()->SetRangeUser(20.,minimum);
-  myFunction->GetYaxis()->SetTitle("CMS L1A rate [kHz]");
-  myFunction->GetXaxis()->SetTitle("F = Fraction of 8b4e");
+  //axis labels ranges & names
+  double minimumX = 20.;
+  double maximumX = 100.;
+  double minimumY = 5.;
+  double maximumY = 330.;
+  if(LogY && minimumY==0.) cout<<"****** LogY == true and minimumY == 0, you probably want to avoid that ******"<<endl;
+  myFunction->SetMinimum(minimumY);
+  myFunction->SetMaximum(maximumY);
+  myFunction->GetXaxis()->SetRangeUser(minimumX,maximumX);
+  myFunction->GetYaxis()->SetTitle("y-axis title [unit]");
+  myFunction->GetXaxis()->SetTitle("x-axis title [unit]");
   myFunction->GetXaxis()->SetTitleOffset(1.2);
   myFunction->GetYaxis()->SetTitleOffset(1.4);
 
@@ -51,8 +57,8 @@ void ExampleUsage()
   //leg->SetBorderSize(0);
   //leg->SetFillStyle(0);
   leg->SetTextSize(0.035);
-  leg->SetHeader("here is a beautiful header");
-  leg->AddEntry(myFunction,"#bunches = (1-F) x 2736 + F x 2007");
+  //leg->SetHeader("here is a beautiful header");
+  leg->AddEntry(myFunction,"description of myFunction");
   leg->Draw("same");
 
   //line

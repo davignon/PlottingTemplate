@@ -11,11 +11,14 @@
 #include <TROOT.h>
 #include <TStyle.h>
 
-TCanvas* CreateCanvas(TString CanvasName = "myPlot", bool LogY = false)
+TCanvas* CreateCanvas(TString CanvasName = "myPlot", bool LogY = false, bool Grid = true)
 {
   TCanvas* c = new TCanvas(CanvasName.Data(),CanvasName.Data(),800,800);
   c->SetLeftMargin(0.11);
-  c->SetGrid();
+  if(Grid)
+    {
+      c->SetGrid();
+    }
   if(LogY)
     {
       c->SetLogy();
