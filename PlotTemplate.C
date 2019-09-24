@@ -36,7 +36,8 @@ void DrawPrelimLabel(TCanvas* c)
 
   TLatex tex;
   tex.SetTextSize(0.03);
-  tex.DrawLatexNDC(0.11,0.91,"#scale[1.5]{CMS}");
+  tex.DrawLatexNDC(0.11,0.91,"#scale[1.5]{CMS} Phase-2 Simulation");//typically for Phase-2
+  // tex.DrawLatexNDC(0.11,0.91,"#scale[1.5]{CMS}");//typically for Phase-1
   tex.Draw("same");
 
   return;
@@ -48,8 +49,9 @@ void DrawLumiLabel(TCanvas* c, TString Lumi = "35.9")
 
   TLatex tex;
   tex.SetTextSize(0.035);
-  TString toDisplay = Lumi + " fb^{-1} (13 TeV)";
-  tex.DrawLatexNDC(0.66,0.91,toDisplay.Data());
+  TString toDisplay = "14 TeV, 200 PU";//typically for Phase-2
+  // TString toDisplay = Lumi + " fb^{-1} (13 TeV)";//typically for Phase-1
+  tex.DrawLatexNDC(0.68,0.91,toDisplay.Data());
   tex.Draw("same");
 
   return;
