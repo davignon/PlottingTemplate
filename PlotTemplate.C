@@ -49,9 +49,10 @@ void DrawLumiLabel(TCanvas* c, TString Lumi = "35.9")
 
   TLatex tex;
   tex.SetTextSize(0.035);
-  TString toDisplay = "14 TeV, 200 PU";//typically for Phase-2
+  tex.SetTextAlign(31);
+  TString toDisplay = "14 TeV, 3000 fb^{-1}, 200 PU";//typically for Phase-2
   // TString toDisplay = Lumi + " fb^{-1} (13 TeV)";//typically for Phase-1
-  tex.DrawLatexNDC(0.68,0.91,toDisplay.Data());
+  tex.DrawLatexNDC(0.90,0.91,toDisplay.Data());
   tex.Draw("same");
 
   return;
